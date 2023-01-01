@@ -44,6 +44,7 @@ export default class ProjectList extends Component {
               return <Project key={item.id} item={item} />;
             })}
         </div>
+        <div className="pagination">{"<<<< 1 >>>>"}</div>
       </div>
     );
   }
