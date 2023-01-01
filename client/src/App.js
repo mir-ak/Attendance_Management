@@ -1,0 +1,28 @@
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import "./styles/App.css";
+import NotFound from "./page/NotFound";
+import Home from "./page/Home";
+import Contact from "./page/Contact";
+import Portfolio from "./page/Portfolio";
+import Presence from "./page/Presence";
+import Login from "./components/Connection/Login";
+import Singup from "./components/Connection/SingUp";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+
+function App() {
+  return (
+    <>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/singup" component={Singup} />
+        <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute exact path="/contact_cv" component={Contact} />
+        <PrivateRoute exact path="/portfolio" component={Portfolio} />
+        <PrivateRoute exact path="/presence" component={Presence} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
+  );
+}
+export default App;
