@@ -8,7 +8,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 685px 1fr 258px;
+  grid-template-rows: 350px 1fr 188px;
   grid-template-areas:
     "1"
     "2"
@@ -22,8 +22,8 @@
 
     .idContent {
       position: absolute;
-      bottom: 60%;
-      left: 50%;
+      top: 20%;
+      left: 20%;
       transform: translateX(-50%);
       width: 100%;
 
@@ -42,11 +42,7 @@
   }
   .navigation {
     grid-area: 2;
-    //padding: 2rem 1rem 1rem;
-    position: absolute;
-    bottom: 100%;
-
-    padding: 0rem 1rem;
+    padding: 2rem 1rem 1rem;
 
     ul {
       height: 100%;
@@ -83,11 +79,11 @@
   }
   .socialNetwork {
     grid-area: 3;
-    padding: 6rem 0rem;
+    padding: 3rem 0rem;
 
     ul {
       display: flex;
-      width: 310px;
+      width: 300px;
       padding: 3px 25px;
       justify-content: space-between;
 
@@ -115,13 +111,13 @@
       }
     }
     .signature {
-      width: 310px;
+      width: 300px;
       padding: 2rem 2.5rem;
       text-align: center;
       justify-content: center;
       letter-spacing: 0.1rem;
-      font-size: 0.7rem;
-
+      font-size: 1.2rem;
+      color: aliceblue;
       a,
       a:visited {
         color: $color-5;
@@ -166,7 +162,7 @@
 
       ul {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-between !important;
 
         span {
           margin-left: 2.5rem !important;

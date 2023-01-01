@@ -30,6 +30,96 @@
       }
     }
   }
+  .typing-demo {
+    width: 100%;
+    animation: typing 3s steps(22), blink 0.5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 2em;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  @import url("https://fonts.googleapis.com/css?family=Roboto:700");
+  @keyframes showTopText {
+    0% {
+      transform: translate3d(0, 100%, 0);
+    }
+    40%,
+    60% {
+      transform: translate3d(0, 50%, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes showBottomText {
+    0% {
+      transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  .animated-title {
+    color: rgb(245, 209, 209);
+    font-family: Roboto, Arial, sans-serif;
+    height: 90vmin;
+    left: 58%;
+    position: absolute;
+    top: 40%;
+    transform: translate(-50%, -20%);
+    width: 90vmin;
+  }
+  .animated-title > div {
+    height: 50%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+  }
+  .animated-title > div div {
+    font-size: 40px;
+    position: absolute;
+  }
+  .animated-title > div div span {
+    display: block;
+  }
+  .animated-title > div.text-top {
+    border-bottom: 2vmin solid rgb(5, 243, 37);
+    top: 0;
+  }
+  .animated-title > div.text-top div {
+    animation: showTopText 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    bottom: 0;
+    transform: translate(0, 100%);
+  }
+  .animated-title > div.text-top div span:first-child {
+    color: #c5cecc;
+    border-width: 1ch;
+    border-color: black;
+  }
+  .animated-title > div.text-bottom {
+    bottom: 0;
+  }
+  .animated-title > div.text-bottom div {
+    animation: showBottomText 0.5s;
+    animation-delay: 1.75s;
+    animation-fill-mode: forwards;
+    top: 0;
+    transform: translate(0, -100%);
+  }
 }
 
 @media screen and (max-width: 850px) {
@@ -41,8 +131,7 @@
 @media screen and (max-width: 580px) {
   .homeContent {
     &:after {
-      background: url("../../image/webdesign-photo.jpg") no-repeat 60% 50% /
-        cover !important;
+      background: url("../../media/face.jpg") no-repeat 60% 50% / cover !important;
     }
     h1 {
       font-size: 3rem !important;
@@ -55,8 +144,7 @@
 @media screen and (max-width: 350px) {
   .homeContent {
     &:after {
-      background: url("../../image/webdesign-photo.jpg") no-repeat 60% 50% /
-        cover !important;
+      background: url("../../media/face.jpg") no-repeat 60% 50% / cover !important;
     }
     h1 {
       font-size: 2.2rem !important;

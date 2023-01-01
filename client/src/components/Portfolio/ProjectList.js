@@ -20,7 +20,7 @@ export default class ProjectList extends Component {
     let { projects, radios, selectedRadio } = this.state;
     return (
       <div className="presenceContent">
-        <ul className="radioDisplay">
+        <ul className="filter">
           {radios.map((radio) => {
             return (
               <li key={radio.id}>
