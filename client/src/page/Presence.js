@@ -1,8 +1,6 @@
 import React from "react";
-// import Experience from "../components/presence/Experience";
-// import Langauges from "../components/presence/Langauges";
-// import Hobbies from "../components/presence/Hobbies";
-// import OtherSkills from "../components/presence/OtherSkills";
+import FaceCamList from "../components/FaceCam/FaceCamList";
+
 import Navigation from "../components/Navigation";
 
 function Presence() {
@@ -11,10 +9,7 @@ function Presence() {
       <div className="presence">
         <Navigation />
         <div className="presenceContent">
-          {/* <Langauges />
-          <Experience />
-          <OtherSkills />
-          <Hobbies /> */}
+          <FaceCamList />
         </div>
       </div>
     </div>
