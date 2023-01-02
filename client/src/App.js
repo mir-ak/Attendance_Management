@@ -4,7 +4,7 @@ import "./styles/App.css";
 import NotFound from "./page/NotFound";
 import Home from "./page/Home";
 import Contact from "./page/Contact";
-import Portfolio from "./page/Portfolio";
+import Dashboard from "./page/Dashboard";
 import Presence from "./page/Presence";
 import Login from "./components/Connection/Login";
 import Singup from "./components/Connection/SingUp";
@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/singup" component={Singup} />
         <PrivateRoute exact path="/" component={Home} />
         <PrivateRoute exact path="/contact_cv" component={Contact} />
-        <PrivateRoute exact path="/portfolio" component={Portfolio} />
+        <PrivateRoute exact path="/dashbord" component={Dashboard} />
         <PrivateRoute exact path="/presence" component={Presence} />
         <Route component={NotFound} />
       </Switch>

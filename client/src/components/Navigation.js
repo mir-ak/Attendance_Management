@@ -43,7 +43,7 @@ function Navigation() {
             </NavLink>
           </li>
           <li>
-            <NavLink exact to="/portfolio" activeClassName="navActive">
+            <NavLink exact to="/dashbord" activeClassName="navActive">
               <i>
                 <MaterialIcon
                   icon="collections"
