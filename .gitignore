@@ -1,2 +1,2 @@
 client/node_modules
-server/serviceAccountKey.json
+server/keyFirebase/serviceAccountKey.json
