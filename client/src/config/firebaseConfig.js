@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAy7BuwZg5osnug1sM104vr-tuY9QCb0pw",
   authDomain: "fasecam-44231.firebaseapp.com",
@@ -14,6 +16,8 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 const databaseApp = getDatabase(firebaseApp);
+const storage = getStorage(firebaseApp);
 const auth = getAuth(firebaseApp);
+export { storage };
 export { auth };
 export default databaseApp;
