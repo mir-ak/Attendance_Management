@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MaterialIcon from "material-icons-react";
+//const image = require("/media/karim/Data_SSD/Attendance_Management/server/image_data/Karim.png");
 export default class Project extends Component {
   state = {
     showInfos: false,
@@ -11,18 +12,11 @@ export default class Project extends Component {
   };
 
   render() {
-    let { name, languagesIcons, source, info, picture } = this.props.item;
-
+    let { fullName, date, time } = this.props.item;
     return (
       <div className="project">
-        <div className="icons">
-          {languagesIcons.map((icon) => (
-            <i>{icon}</i>
-          ))}
-        </div>
-
-        <h3>{name}</h3>
-        <img src={picture} alt="" onClick={this.handleInfo} />
+        <h3>{fullName}</h3>
+        {/* <img src={image} alt="" onClick={this.handleInfo} /> */}
         <span className="infos" onClick={this.handleInfo}>
           <MaterialIcon icon="add_circle" size={35} color="#4FEDD2" invert />
         </span>
@@ -30,18 +24,18 @@ export default class Project extends Component {
           <div className="showInfos">
             <div className="infosContent">
               <div className="head">
-                <h2>{name}</h2>
+                <h2>{date}</h2>
                 <div className="sourceCode">
-                  <a
+                  {/* <a
                     href={source}
                     rel="noonpener noreferrer"
                     className="button"
                     target="_blank">
                     Code souce
-                  </a>
+                  </a> */}
                 </div>
               </div>
-              <p className="text">{info}</p>
+              <p className="text">{time}</p>
               <div className="button return" onClick={this.handleInfo}>
                 close
               </div>
