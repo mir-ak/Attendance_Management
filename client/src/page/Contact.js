@@ -15,7 +15,7 @@ const Contact = () => {
     formState: { errors },
   } = useForm();
   const toastifySuccess = () => {
-    toast("Message envoyé merci :)", {
+    toast.success("Message envoyé merci :)", {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: true,
@@ -29,27 +29,25 @@ const Contact = () => {
 
   const onSubmit = async (data) => {
     const { name, company, phone, email, message } = data;
-    try {
-      const templateParams = {
-        name,
-        company,
-        phone,
-        email,
-        message,
-      };
 
-      await emailjs.send(
-        "service_8jfey5c",
-        "template_x2codz4",
-        templateParams,
-        "user_qsFcQKdL6YUJz04gFklzJ"
-      );
-
-      reset();
-      toastifySuccess();
-    } catch (e) {
-      console.log(e);
-    }
+    const templateParams = {
+      name,
+      company,
+      phone,
+      email,
+      message,
+    };
+    emailjs.init("7M9cumyqzdMgRiihN");
+    emailjs.send("service_5ql43gy", "template_px1fvej", templateParams).then(
+      function (response) {
+        console.log("SUCCESS!", response.status, response.text);
+        reset();
+        toastifySuccess();
+      },
+      function (error) {
+        console.log("FAILED...", error);
+      }
+    );
   };
 
   return (
