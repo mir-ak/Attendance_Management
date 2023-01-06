@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import MaterialIcon from "material-icons-react";
-//const image = require("/media/karim/Data_SSD/Attendance_Management/server/image_data/Karim.png");
+import Clock from "../DisplayClock/Clock";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Stack from "@mui/material/Stack";
 export default class Project extends Component {
   state = {
     showInfos: false,
@@ -12,30 +15,78 @@ export default class Project extends Component {
   };
 
   render() {
-    let { fullName, date, time } = this.props.item;
+    let { fullName, time, picture } = this.props.item;
+
     return (
       <div className="project">
         <h3>{fullName}</h3>
-        {/* <img src={image} alt="" onClick={this.handleInfo} /> */}
-        <span className="infos" onClick={this.handleInfo}>
-          <MaterialIcon icon="add_circle" size={35} color="#4FEDD2" invert />
-        </span>
+        <img src={picture} alt="" onClick={this.handleInfo} />
+
+        <div className="infos" onClick={this.handleInfo}>
+          <div class="tooltip">
+            <MaterialIcon icon="add_circle" size={35} color="#4FEDD2" invert />
+            <span class="tooltiptext">show more informations</span>
+          </div>
+        </div>
         {this.state.showInfos && (
           <div className="showInfos">
             <div className="infosContent">
               <div className="head">
-                <h2>{date}</h2>
-                <div className="sourceCode">
-                  {/* <a
-                    href={source}
-                    rel="noonpener noreferrer"
-                    className="button"
-                    target="_blank">
-                    Code souce
-                  </a> */}
-                </div>
+                <h3>
+                  <MaterialIcon icon="how_to_reg" size={30} invert />
+                  Scanned at {time} a.m
+                </h3>
               </div>
-              <p className="text">{time}</p>
+              <br />
+              <Clock
+                width={200}
+                height={200}
+                hours={Number(time.split(":")[0])}
+                minutes={Number(time.split(":")[1])}
+              />
+              <div className="text">
+                <Stack sx={{ width: "100%" }} spacing={50} paddingTop={5}>
+                  <Alert
+                    severity={
+                      Number(time.split(":")[0]) === 9 &&
+                      Number(time.split(":")[1]) > 5 &&
+                      Number(time.split(":")[1]) <= 35
+                        ? "warning"
+                        : Number(time.split(":")[0]) === 8 &&
+                          Number(time.split(":")[1]) < 55 &&
+                          Number(time.split(":")[1]) >= 35
+                        ? "info"
+                        : (Number(time.split(":")[0]) === 8 &&
+                            Number(time.split(":")[1]) >= 55) ||
+                          (Number(time.split(":")[0]) === 9 &&
+                            Number(time.split(":")[1]) <= 5)
+                        ? "success"
+                        : "error"
+                    }>
+                    <AlertTitle>
+                      {Number(time.split(":")[0]) === 9 &&
+                      Number(time.split(":")[1]) > 5 &&
+                      Number(time.split(":")[1]) <= 35
+                        ? `Il est arrivé avec ${
+                            time.split(":")[1]
+                          } min de retard !`
+                        : Number(time.split(":")[0]) === 8 &&
+                          Number(time.split(":")[1]) < 55 &&
+                          Number(time.split(":")[1]) >= 35
+                        ? `Il est arrivé ${
+                            60 - Number(time.split(":")[1])
+                          } min en avance. `
+                        : (Number(time.split(":")[0]) === 8 &&
+                            Number(time.split(":")[1]) >= 55) ||
+                          (Number(time.split(":")[0]) === 9 &&
+                            Number(time.split(":")[1]) <= 5)
+                        ? "Il est arrivé a l'heure"
+                        : "Il a dû manquer quelques cours matinaux ! "}
+                    </AlertTitle>
+                  </Alert>
+                </Stack>
+              </div>
+
               <div className="button return" onClick={this.handleInfo}>
                 close
               </div>
