@@ -33,7 +33,7 @@ function Navigation() {
               <i>
                 {" "}
                 <MaterialIcon
-                  icon="menu_book"
+                  icon="co_present"
                   size={30}
                   color="#4FEDD2"
                   invert
@@ -43,16 +43,16 @@ function Navigation() {
             </NavLink>
           </li>
           <li>
-            <NavLink exact to="/dashbord" activeClassName="navActive">
+            <NavLink exact to="/Dashboard" activeClassName="navActive">
               <i>
                 <MaterialIcon
-                  icon="collections"
+                  icon="dashboard"
                   size={30}
                   color="#4FEDD2"
                   invert
                 />
               </i>
-              <span>??????</span>
+              <span>Dashboard</span>
             </NavLink>
           </li>
           <li>

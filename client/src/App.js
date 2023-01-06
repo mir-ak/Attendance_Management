@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/singup" component={Singup} />
         <PrivateRoute exact path="/" component={Home} />
         <PrivateRoute exact path="/contact_cv" component={Contact} />
-        <PrivateRoute exact path="/dashbord" component={Dashboard} />
+        <PrivateRoute exact path="/Dashboard" component={Dashboard} />
         <PrivateRoute exact path="/presence" component={Presence} />
         <Route component={NotFound} />
       </Switch>
