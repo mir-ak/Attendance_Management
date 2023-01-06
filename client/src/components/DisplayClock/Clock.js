@@ -23,6 +23,7 @@ class Clock extends React.Component {
       .attr("stroke-width", 1);
 
     const hands = svg.append("g").attr("class", "hands");
+
     hands
       .append("line")
       .attr("class", "hour-hand")
@@ -55,6 +56,7 @@ class Clock extends React.Component {
       const angle = (i / 12) * 360 - 90;
       const x = radius * 0.8 * Math.cos((angle * Math.PI) / 180);
       const y = radius * 0.8 * Math.sin((angle * Math.PI) / 180);
+
       numbers
         .append("text")
         .attr("x", x)
