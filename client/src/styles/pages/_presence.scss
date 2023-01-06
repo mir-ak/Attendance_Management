@@ -44,50 +44,45 @@
       border-radius: $borderRadius;
       margin: 1.5rem 0 0 0;
       text-align: center;
-      width: 32%;
-      height: 48%;
+      width: 18%;
+      height: 50%;
       padding: 0.5rem;
       box-shadow: $shadow;
       display: grid;
-      grid-template-rows: 0% 15% 55% 15%;
+      grid-template-rows: 13% 70% 10% 0%;
       grid-template-areas:
         "1"
         "2"
         "3"
         "4";
     }
-    .icons {
-      display: none;
-      grid-area: 1;
-      display: flex;
-      justify-content: center;
-      @include verticalCenter;
-
-      i {
-        display: none;
-        font-size: 1.4rem;
-        padding: 0 0.35rem;
-        color: $color-5;
-        text-shadow: 0 0px 1px $color-1;
-      }
-    }
     h3 {
-      grid-area: 2;
+      grid-area: 1;
       font-family: $font-2;
       font-size: 1.65rem;
       @include verticalCenter;
-      justify-content: left;
+      justify-content: center;
     }
+
     img {
-      grid-area: 3;
+      grid-area: 2;
+
       object-fit: cover;
       margin: 0 auto;
-      width: 100%;
+
+      width: 65%;
       height: 100%;
       box-shadow: 0 2px 6px #333;
-      border-radius: 4px;
+      border-radius: 25px;
       cursor: pointer;
       @include verticalCenter;
+    }
+    .h4 {
+      grid-area: 3;
+      font-family: $font-2;
+      font-size: 1.3rem;
+      @include verticalCenter;
+      justify-content: left;
     }
     .infos {
       grid-area: 4;
@@ -100,6 +95,32 @@
       &:hover {
         transform: scale(0.8);
       }
+      .tooltip {
+        position: relative;
+        //display: inline-block;
+        //border-bottom: 1px dotted black;
+      }
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 130px;
+        font-size: 20px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+
+        /* Position the tooltip */
+        position: absolute;
+        top: 2;
+        left: 40px;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+      }
     }
     .showInfos {
       position: absolute;
@@ -108,13 +129,14 @@
       bottom: 0;
       right: 0;
       background: rgba(0, 0, 0, 0.507);
-      animation: popup 0.3s ease forwards;
+      animation: popup 0.1s ease forwards;
       transform-origin: center;
+      z-index: 1;
 
       .infosContent {
         position: relative;
         top: 25%;
-        width: 600px;
+        width: 500px;
         margin: 0 auto;
         color: $color-5;
         background: $color-1;
@@ -135,6 +157,7 @@
         display: flex;
         justify-content: space-around;
         margin: 1rem 0;
+        color: $white;
       }
       h2 {
         text-align: left;
@@ -142,7 +165,7 @@
       }
       .button {
         cursor: pointer;
-        color: $color-1;
+        color: $black;
         background: $color-5;
         border-radius: $borderRadius;
         padding: 1rem;
@@ -164,7 +187,7 @@
   }
   .pagination {
     grid-area: 3;
-    padding-top: 3rem;
+    padding-top: 4rem;
     display: flex;
     width: 100%;
     justify-content: center;
