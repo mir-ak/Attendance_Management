@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import * as firebase from "firebase/database";
 import databaseApp, { storage } from "../../config/firebaseConfig";
-import { ref, listAll, getDownloadURL } from "firebase/storage";
-import { portfolioData } from "../../data/portfolioData";
+import { ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
 import FaceCam from "./FaceCam";
 import Pagination from "@mui/material/Pagination";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
@@ -16,9 +15,11 @@ import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Tooltip from "@mui/material/Tooltip";
-//mport MaterialIcon from "material-icons-react";
-import Button from "@mui/material/Button";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import Fab from "@mui/material/Fab";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import exportPDF from "./PDF";
 
 const CircularProgressWithLabel = (props) => {
   return (
@@ -49,10 +50,21 @@ const CircularProgressWithLabel = (props) => {
   );
 };
 
+const BootstrapTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} arrow classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.black,
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.black,
+  },
+}));
+
 export default class ProjectList extends Component {
   state = {
-    projects: portfolioData,
-    faceCam: [],
+    faceArray: [],
+    AllFaceArray: [],
     currentPage: 1,
     elementsPerPage: 10,
     progress: 10,
@@ -80,41 +92,79 @@ export default class ProjectList extends Component {
   };
 
   componentDidMount() {
-    var newFaceCam = [];
-
-    listAll(ref(storage, "/pictures")).then((data) => {
-      data.items.forEach((fileRef) => {
-        getDownloadURL(fileRef).then((url) => {
-          firebase.onValue(
-            firebase.ref(databaseApp, "faceCam/"),
-            (snapshot) => {
-              if (snapshot.val())
-                Object.entries(snapshot.val()).forEach(([id, values]) => {
-                  if (url.includes(values.fullName.split(" ").join("%20"))) {
-                    let newJsonFaceCam = {
-                      id: id,
-                      fullName: values.fullName,
-                      date: values.date,
-                      time: values.time,
-                      picture: url,
-                    };
-
-                    if (
-                      !newFaceCam.some((item) => item.id === newJsonFaceCam.id)
-                    ) {
-                      newFaceCam.push(newJsonFaceCam);
+    var newFace = [];
+    var totalFace = [];
+    listAll(ref(storage, "/pictures"))
+      .then((data) => {
+        data.items.forEach((fileRef) => {
+          listAll(ref(storage, "/pictures"))
+            .then((data) => {
+              data.items.forEach((fileRef) => {
+                getMetadata(fileRef)
+                  .then((metadata) => {
+                    const extension = metadata.contentType.split("/")[1];
+                    var newJsonTotalFace = {};
+                    if (fileRef.name.includes(extension)) {
+                      newJsonTotalFace = {
+                        fullName: fileRef.name.split("." + extension)[0],
+                      };
+                    } else {
+                      newJsonTotalFace = {
+                        fullName: fileRef.name.split(".jpg")[0],
+                      };
                     }
+                    if (
+                      !totalFace.some(
+                        (item) => item.fullName === newJsonTotalFace.fullName
+                      )
+                    ) {
+                      totalFace.push(newJsonTotalFace);
+                    }
+                    this.setState({ AllFaceArray: totalFace });
+                  })
+                  .catch((err) => console.log(err));
+              });
+            })
+            .catch((err) => console.log(err));
 
-                    this.setState({
-                      faceCam: newFaceCam,
+          getDownloadURL(fileRef)
+            .then((url) => {
+              firebase.onValue(
+                firebase.ref(databaseApp, "faceCam/"),
+                (snapshot) => {
+                  if (snapshot.val())
+                    Object.entries(snapshot.val()).forEach(([id, values]) => {
+                      if (
+                        url.includes(values.fullName.split(" ").join("%20"))
+                      ) {
+                        let newJsonFace = {
+                          id: id,
+                          fullName: values.fullName,
+                          date: values.date,
+                          time: values.time,
+                          picture: url,
+                        };
+
+                        if (
+                          !newFace.some((item) => item.id === newJsonFace.id)
+                        ) {
+                          newFace.push(newJsonFace);
+                        }
+
+                        this.setState({
+                          faceArray: newFace.sort((a, b) =>
+                            a.fullName.localeCompare(b.fullName)
+                          ),
+                        });
+                      }
                     });
-                  }
-                });
-            }
-          );
+                }
+              );
+            })
+            .catch((err) => console.log(err));
         });
-      });
-    });
+      })
+      .catch((err) => console.log(err));
     const timer = setInterval(() => {
       this.setState((prevState) => {
         const prevProgress = prevState.progress;
@@ -128,11 +178,12 @@ export default class ProjectList extends Component {
   }
 
   render() {
-    let { faceCam, currentDate, elementsPerPage, currentTime } = this.state;
+    let { AllFaceArray, faceArray, currentDate, elementsPerPage, currentTime } =
+      this.state;
     const indexOfLastElement =
       this.state.currentPage * this.state.elementsPerPage;
     const indexOfFirstElement = indexOfLastElement - this.state.elementsPerPage;
-    const filterDate = faceCam.filter((item) =>
+    const filterDate = faceArray.filter((item) =>
       item.date.includes(currentDate)
     );
     const filterTime = filterDate.filter((item) =>
@@ -204,13 +255,44 @@ export default class ProjectList extends Component {
               />
             </li>
           </LocalizationProvider>
-          <Box sx={{ flexGrow: 0.98 }} />
+          <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Tooltip title="Add Products">
-              <Stack spacing={2} direction="row">
-                <Button variant="outlined">Outlined</Button>
-              </Stack>
-            </Tooltip>
+            <ThemeProvider
+              theme={createTheme({
+                palette: {
+                  neutral: {
+                    main: "#FFFFFF",
+                    contrastText: "#fff",
+                  },
+                },
+              })}>
+              <BootstrapTooltip title="Download Pdf">
+                <Fab
+                  size="small"
+                  style={{ marginTop: "-20px" }}
+                  variant="outlined"
+                  color="neutral"
+                  aria-label="add">
+                  <ThemeProvider
+                    theme={createTheme({
+                      palette: {
+                        neutral: {
+                          main: "#2a1d52",
+                          contrastText: "#fff",
+                        },
+                      },
+                    })}>
+                    <FileDownloadIcon
+                      fontSize="medium"
+                      color="neutral"
+                      onClick={() => {
+                        exportPDF(AllFaceArray, filterDate, currentDate);
+                      }}
+                    />
+                  </ThemeProvider>
+                </Fab>
+              </BootstrapTooltip>
+            </ThemeProvider>
           </Box>
         </ul>
         {this.state.progress <= 100 ? (
@@ -229,7 +311,7 @@ export default class ProjectList extends Component {
                     <strong>check it out!</strong>
                   </Alert>
                 </Stack>
-              ) : faceCam.length > 0 && currentTime !== null ? (
+              ) : faceArray.length > 0 && currentTime !== null ? (
                 filterTime
                   .slice(indexOfFirstElement, indexOfLastElement)
                   .map((item) => {

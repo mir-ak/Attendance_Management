@@ -23,9 +23,9 @@ export default class Project extends Component {
         <img src={picture} alt="" onClick={this.handleInfo} />
 
         <div className="infos" onClick={this.handleInfo}>
-          <div class="tooltip">
+          <div className="tooltip">
             <MaterialIcon icon="add_circle" size={35} color="#4FEDD2" invert />
-            <span class="tooltiptext">show more informations</span>
+            <span className="tooltiptext">show more informations</span>
           </div>
         </div>
         {this.state.showInfos && (
