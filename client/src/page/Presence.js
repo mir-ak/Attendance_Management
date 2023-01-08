@@ -1,5 +1,5 @@
 import React from "react";
-import FaceCamList from "../components/FaceCam/FaceCamList";
+import FaceCamList from "../components/Presence/FaceCamList";
 
 import Navigation from "../components/Navigation";
 

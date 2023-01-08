@@ -19,7 +19,7 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import Fab from "@mui/material/Fab";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import exportPDF from "./PDF";
+import exportPDF from "../DownloadPdf/PDF";
 
 const CircularProgressWithLabel = (props) => {
   return (
@@ -96,6 +96,7 @@ export default class ProjectList extends Component {
     var totalFace = [];
     listAll(ref(storage, "/pictures"))
       .then((data) => {
+        console.log(data);
         data.items.forEach((fileRef) => {
           listAll(ref(storage, "/pictures"))
             .then((data) => {
