@@ -1,12 +1,12 @@
 import React from "react";
 import Navigation from "../components/Navigation";
-import FaceCamList from "../components/FaceCam/FaceCamList";
+//import FaceCamList from "../components/Presence/FaceCamList";
 
 function Portfolio() {
   return (
-    <div className="presence">
+    <div className="dashboard">
       <Navigation />
-      <FaceCamList />
+      <div className="dashboardContent">{/* <FaceCamList /> */}</div>
     </div>
   );
 }
