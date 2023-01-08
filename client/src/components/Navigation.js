@@ -81,7 +81,7 @@ function Navigation() {
                   invert
                 />
               </i>
-              <span>Déconnecter</span>
+              <span>Log Out</span>
             </NavLink>
           </li>
         </ul>
