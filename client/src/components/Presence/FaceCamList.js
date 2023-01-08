@@ -96,7 +96,6 @@ export default class ProjectList extends Component {
     var totalFace = [];
     listAll(ref(storage, "/pictures"))
       .then((data) => {
-        console.log(data);
         data.items.forEach((fileRef) => {
           listAll(ref(storage, "/pictures"))
             .then((data) => {
@@ -190,7 +189,6 @@ export default class ProjectList extends Component {
     const filterTime = filterDate.filter((item) =>
       item.time.includes(currentTime)
     );
-
     return (
       <div className="presenceContent">
         <ul className="filter">
