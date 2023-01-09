@@ -3,6 +3,7 @@
     width: 99.5%;
     display: grid;
     min-height: $minHeight;
+    //overflow: hidden;
     grid-template-columns: 1fr;
     grid-template-rows: 50px 1fr 80px;
     grid-template-areas:
