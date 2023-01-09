@@ -88,7 +88,7 @@ def face_reco(frame, known_face_encodings, known_face_names, pose_predictor_68_p
             return np.empty((0))
         # vérifier la distance entre les visages connus et les visages détéctés 
         vectors = np.linalg.norm(known_face_encodings - face_encoding, axis=1)
-        tolerance = 0.65
+        tolerance = 0.58
         result = []
         for vector in vectors:
             if vector <= tolerance:
