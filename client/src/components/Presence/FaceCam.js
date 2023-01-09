@@ -15,7 +15,6 @@ export default class Project extends Component {
   };
 
   render() {
-    console.log(this.props.item);
     let { fullName, time, picture } = this.props.item ? this.props.item : null;
 
     return (
