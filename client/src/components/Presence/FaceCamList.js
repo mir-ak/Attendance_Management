@@ -165,6 +165,7 @@ export default class ProjectList extends Component {
         });
       })
       .catch((err) => console.log(err));
+
     const timer = setInterval(() => {
       this.setState((prevState) => {
         const prevProgress = prevState.progress;
