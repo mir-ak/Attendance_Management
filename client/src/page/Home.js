@@ -9,21 +9,20 @@ function Home() {
         <div className="homeContent">
           <div className="content">
             <div className="typing-demo">
-              <h2>Bienvenue sur l'App de gestion de présence</h2>
+              <h2>Welcome to Attendance Management System</h2>
             </div>
             <div className="animated-title">
               <div className="text-top">
                 <div>
                   <span>
-                    C’est avec un grand plaisir que je lance la mise en ligne de
-                    dans ma nouvelle application de gestion de présence.
-                    <br />
-                    je suis heureux de vous y accueillir.{" "}
+                    It is with great pleasure that I launch my new attendance
+                    management application.
+                    <br />{" "}
                   </span>
                 </div>
               </div>
               <div className="text-bottom">
-                <div>Bonne navigation !</div>
+                <div>Happy Surfing !</div>
               </div>
             </div>
           </div>

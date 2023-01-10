@@ -25,7 +25,7 @@ function Navigation() {
               <i>
                 <MaterialIcon icon="cottage" size={30} color="#4FEDD2" invert />
               </i>
-              <span>Accueil</span>
+              <span>Home</span>
             </NavLink>
           </li>
           <li>
@@ -120,7 +120,7 @@ function Navigation() {
         </ul>
 
         <div className="signature">
-          <p>AGDP® 1.3.0</p>
+          <p>AMS® 2.6.0</p>
         </div>
       </div>
     </div>
