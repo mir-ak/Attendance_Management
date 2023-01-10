@@ -62,21 +62,21 @@ const Contact = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 noValidate>
                 <div className="contact-form">
-                  <h2>Contactez-moi</h2>
+                  <h2>Contact-Us</h2>
                   <input
                     type="text"
                     name="name"
                     {...register("name", {
                       required: {
                         value: true,
-                        message: "veuillez saisir votre nom",
+                        message: "Please enter your name",
                       },
                       maxLength: {
-                        value: 30,
-                        message: "Veuillez utiliser 30 caractères ou moins",
+                        value: 50,
+                        message: "Please enter 50 caracters or less",
                       },
                     })}
-                    placeholder="Nom *"
+                    placeholder="Name *"
                     autoComplete="off"></input>
                   {errors.name && (
                     <span className="errorMessage">{errors.name.message}</span>
@@ -87,14 +87,14 @@ const Contact = () => {
                     {...register("company", {
                       required: {
                         value: true,
-                        message: "veuillez saisir le nom de société",
+                        message: "Please enter a company name",
                       },
                       maxLength: {
-                        value: 30,
-                        message: "Veuillez utiliser 30 caractères ou moins",
+                        value: 50,
+                        message: "Please enter 50 caracters or less",
                       },
                     })}
-                    placeholder="Société *"></input>
+                    placeholder="Company Name *"></input>
                   {errors.company && (
                     <span className="errorMessage">
                       &nbsp;{errors.company.message}
@@ -106,15 +106,19 @@ const Contact = () => {
                     {...register("phone", {
                       required: {
                         value: true,
-                        message: "Veuillez saisir un numéro Téléphone",
-                        pattern: /^[0-0]{1}-[0-9]{3}-[0-9]{2}[0-9]{2}$/,
+                        message: "Please enter a phone number",
+                        pattern: /^[0-0]{1}[0-9]{3}[0-9]{2}[0-9]{2}[0-9]{2}$/g,
+                      },
+                      minLength: {
+                        value: 10,
+                        message: "Please enter 10 digits at least ",
                       },
                       maxLength: {
                         value: 12,
-                        message: "Veuillez utiliser 12 numéro ou moins",
+                        message: "Please enter 12 digits ",
                       },
                     })}
-                    placeholder="Téléphone *"></input>
+                    placeholder="Phone Number *"></input>
                   {errors.phone && (
                     <span className="errorMessage">{errors.phone.message}</span>
                   )}
@@ -127,10 +131,10 @@ const Contact = () => {
                       pattern:
                         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                     })}
-                    placeholder="Adresse email *"></input>
+                    placeholder="Email *"></input>
                   {errors.email && (
                     <span className="errorMessage">
-                      Veuillez saisir une adresse e-mail valide
+                      Please enter a valid email address
                     </span>
                   )}
                   <textarea
@@ -141,11 +145,9 @@ const Contact = () => {
                     })}
                     placeholder="Message *"></textarea>
                   {errors.message && (
-                    <span className="errorMessage">
-                      Veuillez saisir un message
-                    </span>
+                    <span className="errorMessage">Please enter a message</span>
                   )}
-                  <input className="button" type="submit" value="Envoyer" />
+                  <input className="button" type="submit" value="Submit" />
                 </div>
                 <ToastContainer />
               </form>
