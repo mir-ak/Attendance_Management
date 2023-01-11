@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Attendance_Management/static/css/main.beec5b64.chunk.css",
-    "main.js": "/Attendance_Management/static/js/main.98ac6bad.chunk.js",
-    "main.js.map": "/Attendance_Management/static/js/main.98ac6bad.chunk.js.map",
+    "main.css": "/Attendance_Management/static/css/main.14af4027.chunk.css",
+    "main.js": "/Attendance_Management/static/js/main.cfb6cff6.chunk.js",
+    "main.js.map": "/Attendance_Management/static/js/main.cfb6cff6.chunk.js.map",
     "runtime-main.js": "/Attendance_Management/static/js/runtime-main.e4f2ce2e.js",
     "runtime-main.js.map": "/Attendance_Management/static/js/runtime-main.e4f2ce2e.js.map",
     "static/css/2.93f6825e.chunk.css": "/Attendance_Management/static/css/2.93f6825e.chunk.css",
@@ -16,7 +16,7 @@
     "static/js/5.ed4716e5.chunk.js.map": "/Attendance_Management/static/js/5.ed4716e5.chunk.js.map",
     "index.html": "/Attendance_Management/index.html",
     "static/css/2.93f6825e.chunk.css.map": "/Attendance_Management/static/css/2.93f6825e.chunk.css.map",
-    "static/css/main.beec5b64.chunk.css.map": "/Attendance_Management/static/css/main.beec5b64.chunk.css.map",
+    "static/css/main.14af4027.chunk.css.map": "/Attendance_Management/static/css/main.14af4027.chunk.css.map",
     "static/js/2.3f474229.chunk.js.LICENSE.txt": "/Attendance_Management/static/js/2.3f474229.chunk.js.LICENSE.txt",
     "static/js/3.3f514865.chunk.js.LICENSE.txt": "/Attendance_Management/static/js/3.3f514865.chunk.js.LICENSE.txt",
     "static/js/4.1109012b.chunk.js.LICENSE.txt": "/Attendance_Management/static/js/4.1109012b.chunk.js.LICENSE.txt",
@@ -32,7 +32,7 @@
     "static/js/runtime-main.e4f2ce2e.js",
     "static/css/2.93f6825e.chunk.css",
     "static/js/2.3f474229.chunk.js",
-    "static/css/main.beec5b64.chunk.css",
-    "static/js/main.98ac6bad.chunk.js"
+    "static/css/main.14af4027.chunk.css",
+    "static/js/main.cfb6cff6.chunk.js"
   ]
 }
