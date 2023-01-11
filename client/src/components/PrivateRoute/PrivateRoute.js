@@ -1,16 +1,13 @@
-import React from 'react';
+import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import AuthContext from "./Auth";
-// Restricted route 
-export const PrivateRoute =({
-  component: Component,
-  ...rest
-  }) => {
+// Restricted route
+export const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => {
-        if (AuthContext.isAuthenticated()) {
+      render={(props) => {
+        if (AuthContext.isAuthenticated() === "true") {
           return <Component {...props} />;
         } else {
           return (
@@ -18,8 +15,8 @@ export const PrivateRoute =({
               to={{
                 pathname: "/login",
                 state: {
-                  from: props.location
-                }
+                  from: props.location,
+                },
               }}
             />
           );
@@ -28,4 +25,4 @@ export const PrivateRoute =({
     />
   );
 };
-export default PrivateRoute ;
+export default PrivateRoute;
