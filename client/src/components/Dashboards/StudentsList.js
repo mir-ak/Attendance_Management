@@ -1,6 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
-
+//import Avatar from "@mui/material/Avatar";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
 function StudentsList(props) {
@@ -10,13 +10,14 @@ function StudentsList(props) {
       headerName: " ",
       renderCell: ({ value }) => (
         <div style={{ transform: "translateX(-50%)", paddingLeft: "50%" }}>
+          {/* <Avatar sx={{ width: 40, height: 40 }} alt=" " src={value} /> */}
           <img
             style={{
               borderRadius: "50%",
               boxShadow:
                 "0 0 0 1px rgb(99, 164, 233), 0 0 0 2px #4fedd2, 0 0 0 0px #6c77f4",
-              width: "38px",
-              height: "38px",
+              width: "40px",
+              height: "40px",
             }}
             src={value}
             alt=" "
