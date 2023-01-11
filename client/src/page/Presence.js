@@ -5,12 +5,10 @@ import Navigation from "../components/Navigation";
 
 function Presence() {
   return (
-    <div>
-      <div className="presence">
-        <Navigation />
-        <div className="presenceContent">
-          <FaceCamList />
-        </div>
+    <div className="presence">
+      <Navigation />
+      <div className="presenceContent">
+        <FaceCamList />
       </div>
     </div>
   );
