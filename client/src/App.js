@@ -9,6 +9,8 @@ import Presence from "./page/Presence";
 import Login from "./components/Connection/Login";
 import Singup from "./components/Connection/SingUp";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import "react-notifications/lib/notifications.css";
+import { NotificationContainer } from "react-notifications";
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <PrivateRoute exact path="/presence" component={Presence} />
         <Route component={NotFound} />
       </Switch>
+      <NotificationContainer />
     </>
   );
 }
