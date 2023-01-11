@@ -2,6 +2,7 @@
   "name": "karim_app_web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mir-ak.github.io/Attendance_Management",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@babel/core": "7.12.3",
@@ -119,7 +120,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "eject": "node scripts/eject.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
