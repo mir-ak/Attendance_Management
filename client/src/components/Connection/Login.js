@@ -13,6 +13,7 @@ import "../../styles/Login.css";
 import { auth } from "../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import AuthContext from "../PrivateRoute/Auth";
+import { NotificationManager } from "react-notifications";
 class Login extends Component {
   state = {
     email: "",
@@ -26,11 +27,13 @@ class Login extends Component {
     try {
       signInWithEmailAndPassword(auth, email, password).then(
         (user) => {
-          console.log(user.user.email);
-          if (user) {
+          if (user.user.email) {
             AuthContext.login(() => {
+              localStorage.setItem("user", user.user.email.split("@")[0]);
               this.props.history.push("/");
             });
+
+            NotificationManager.success(`You are logged in successfully`);
           }
         },
         function (error) {

@@ -7,7 +7,8 @@ import {
   LinkedinOutlined,
 } from "@ant-design/icons";
 import MaterialIcon from "material-icons-react";
-import AuthContext from "./PrivateRoute/Auth";
+import Auth from "./PrivateRoute/Auth";
+import { NotificationManager } from "react-notifications";
 
 function Navigation() {
   return (
@@ -15,7 +16,11 @@ function Navigation() {
       <div className="id">
         <div className="idContent">
           <img src={imgProfil} alt="profil-pic" />
-          <h3>Imade Saleh</h3>
+          <h3>
+            {localStorage.getItem("user")
+              ? localStorage.getItem("user").split("_").join(" ")
+              : "Admin 2023"}
+          </h3>
         </div>
       </div>
       <div className="navigation">
@@ -69,18 +74,21 @@ function Navigation() {
             </NavLink>
           </li>
           <li>
-            <NavLink exact to="/Login" activeClassName="navActive">
-              <i
-                onClick={() => {
-                  AuthContext.logout();
-                }}>
-                <MaterialIcon
-                  icon="power_settings_new"
-                  size={30}
-                  color="#4FEDD2"
-                  invert
-                />
-              </i>
+            <NavLink
+              exact
+              to="/Login"
+              activeClassName="navActive"
+              onClick={() => {
+                Auth.logout();
+                NotificationManager.success(`You are logged out successfully`);
+              }}>
+              <MaterialIcon
+                icon="power_settings_new"
+                size={30}
+                color="#4FEDD2"
+                invert
+              />
+
               <span>Log Out</span>
             </NavLink>
           </li>
