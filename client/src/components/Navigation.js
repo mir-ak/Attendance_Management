@@ -48,7 +48,7 @@ function Navigation() {
             </NavLink>
           </li>
           <li>
-            <NavLink exact to="/Dashboard" activeClassName="navActive">
+            <NavLink exact to="/dashboard" activeClassName="navActive">
               <i>
                 <MaterialIcon
                   icon="dashboard"
