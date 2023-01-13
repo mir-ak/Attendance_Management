@@ -1,3 +1,4 @@
 client/node_modules
+
 server/keyFirebase/serviceAccountKey.json
 server/image_data
