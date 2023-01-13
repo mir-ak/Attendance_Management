@@ -1,4 +1,4 @@
 client/node_modules
-
+client/build
 server/keyFirebase/serviceAccountKey.json
 server/image_data
