@@ -69,6 +69,7 @@ export default class Dashboards extends Component {
   componentDidMount() {
     var newFace = [];
     var totalFace = [];
+
     listAll(ref(storage, "/pictures"))
       .then((data) => {
         data.items.forEach((fileRef) => {
@@ -91,37 +92,41 @@ export default class Dashboards extends Component {
                       };
                     }
 
-                    getDownloadURL(fileRef).then((url) => {
-                      if (
-                        url.includes(
-                          newJsonTotalFace.fullName.split(" ").join("%20")
-                        )
-                      ) {
-                        newJsonTotalFace = {
-                          id: newJsonTotalFace.id,
-                          fullName: newJsonTotalFace.fullName,
-                          Email:
-                            newJsonTotalFace.fullName
-                              .split(" ")
-                              .join("")
-                              .toLowerCase() + "@etud.univ-paris8.fr",
-                          picture: url,
-                        };
-                      }
+                    getDownloadURL(fileRef)
+                      .then((url) => {
+                        if (
+                          url.includes(
+                            newJsonTotalFace.fullName.split(" ").join("%20")
+                          )
+                        ) {
+                          newJsonTotalFace = {
+                            id: newJsonTotalFace.id,
+                            fullName: newJsonTotalFace.fullName,
+                            Email:
+                              newJsonTotalFace.fullName
+                                .split(" ")
+                                .join("")
+                                .toLowerCase() + "@etud.univ-paris8.fr",
+                            picture: url,
+                          };
+                        }
 
-                      if (
-                        !totalFace.some(
-                          (item) => item.fullName === newJsonTotalFace.fullName
-                        )
-                      )
-                        totalFace.push(newJsonTotalFace);
-                    });
-
-                    this.setState({
-                      studentsArray: totalFace.sort((a, b) =>
-                        a.fullName.localeCompare(b.fullName)
-                      ),
-                    });
+                        if (
+                          !totalFace.some(
+                            (item) =>
+                              item.fullName === newJsonTotalFace.fullName
+                          )
+                        ) {
+                          totalFace.push(newJsonTotalFace);
+                          const sortedArray = [...totalFace].sort((a, b) =>
+                            a.fullName.localeCompare(b.fullName)
+                          );
+                          this.setState({
+                            studentsArray: sortedArray,
+                          });
+                        }
+                      })
+                      .catch((e) => console.log(e));
                   })
                   .catch((err) => console.log(err));
               });
@@ -142,7 +147,6 @@ export default class Dashboards extends Component {
                   if (!newFace.some((item) => item.id === newJsonFace.id)) {
                     newFace.push(newJsonFace);
                   }
-
                   this.setState({ faceArray: newFace });
                 });
             }
@@ -151,17 +155,19 @@ export default class Dashboards extends Component {
       })
       .catch((err) => console.log(err));
 
-    const timer = setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.setState((prevState) => {
         const prevProgress = prevState.progress;
         const progress = prevProgress >= 100 ? 130 : prevProgress + 22.5;
         return { progress };
       });
     }, 800);
-    return () => {
-      clearInterval(timer);
-    };
   }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
   render() {
     return (
       <div className="dashboard">

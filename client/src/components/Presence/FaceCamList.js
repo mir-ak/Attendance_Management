@@ -94,6 +94,7 @@ export default class ProjectList extends Component {
   componentDidMount() {
     var newFace = [];
     var totalFace = [];
+
     listAll(ref(storage, "/pictures"))
       .then((data) => {
         data.items.forEach((fileRef) => {
@@ -149,13 +150,13 @@ export default class ProjectList extends Component {
                           !newFace.some((item) => item.id === newJsonFace.id)
                         ) {
                           newFace.push(newJsonFace);
-                        }
-
-                        this.setState({
-                          faceArray: newFace.sort((a, b) =>
+                          const sortedArray = [...newFace].sort((a, b) =>
                             a.fullName.localeCompare(b.fullName)
-                          ),
-                        });
+                          );
+                          this.setState({
+                            faceArray: sortedArray,
+                          });
+                        }
                       }
                     });
                 }
@@ -166,16 +167,17 @@ export default class ProjectList extends Component {
       })
       .catch((err) => console.log(err));
 
-    const timer = setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.setState((prevState) => {
         const prevProgress = prevState.progress;
         const progress = prevProgress >= 100 ? 130 : prevProgress + 22.5;
         return { progress };
       });
     }, 800);
-    return () => {
-      clearInterval(timer);
-    };
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
   }
 
   render() {

@@ -74,8 +74,8 @@ function StudentsList(props) {
             Toolbar: GridToolbar,
           }}
           pageSize={6}
-          rowsPerPageOptions={[10, 20, 30]}
-          rowsPerPage={10}
+          rowsPerPageOptions={[6]}
+          rowsPerPage={6}
           count={props.studentsArray.length}
           //checkboxSelection
           disableSelectionOnClick
