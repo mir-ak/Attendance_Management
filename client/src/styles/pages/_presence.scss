@@ -46,11 +46,11 @@
       margin: 1.5rem 0 0 0;
       text-align: center;
       width: 18%;
-      height: 50%;
+      height: 49%;
       padding: 0.5rem;
       box-shadow: $shadow;
       display: grid;
-      grid-template-rows: 13% 70% 10% 0%;
+      grid-template-rows: 15% 75% 7% 0%;
       grid-template-areas:
         "1"
         "2"
@@ -186,7 +186,7 @@
   }
   .pagination {
     grid-area: 3;
-    padding-top: 4rem;
+    padding-top: 2.5rem;
     display: flex;
     width: 100%;
     justify-content: center;
