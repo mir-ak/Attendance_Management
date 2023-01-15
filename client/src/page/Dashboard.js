@@ -178,22 +178,35 @@ export default class Dashboards extends Component {
           <div className="dashboardContent">
             <div className="Calendar">
               <h3>Calendar</h3>
-              <LocalizationProvider dateAdapter={AdapterDayjs} sx={{}}>
-                <StaticDatePicker
-                  dateFormat="DD/MM/YYYY"
-                  inputFormat="DD/MM/YYYY"
-                  value={this.state.dateChoose}
-                  shouldDisableDate={this.isWeekend}
-                  onChange={(newValue) => this.handleChangeDate(newValue)}
+              <LocalizationProvider
+                dateAdapter={AdapterDayjs}
+                sx={{ width: "100%" }}>
+                <Box
                   sx={{
-                    backgroundColor: "green",
-                    ".MuiTypography-root": {
-                      color: "white",
-                      opacity: 0.85,
+                    "& > div > div, & > div ": {
+                      width: "95%",
+                      opacity: 0.93,
+                      position: "relative",
+                      left: "2.7%",
+                      borderRadius: "20px",
                     },
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
+                  }}>
+                  <StaticDatePicker
+                    dateFormat="DD/MM/YYYY"
+                    inputFormat="DD/MM/YYYY"
+                    value={this.state.dateChoose}
+                    shouldDisableDate={this.isWeekend}
+                    onChange={(newValue) => this.handleChangeDate(newValue)}
+                    sx={{
+                      backgroundColor: "green",
+                      ".MuiTypography-root": {
+                        color: "white",
+                        opacity: 0.85,
+                      },
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </Box>
               </LocalizationProvider>
             </div>
             <StudentsList studentsArray={this.state.studentsArray} />
