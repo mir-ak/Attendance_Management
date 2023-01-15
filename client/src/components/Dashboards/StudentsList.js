@@ -57,21 +57,22 @@ function StudentsList(props) {
       <br />
       <Box
         sx={{
-          height: 450,
-          width: "100%",
-
-          justifyContent: "center",
-          alignContent: "center",
-          color: "red",
-          display: "flex",
-          backgroundColor: "white",
-          opacity: 0.85,
+          height: 455,
+          width: "98%",
+          paddingLeft: "2%",
         }}>
         <DataGrid
           rows={props.studentsArray}
           columns={columns}
           components={{
             Toolbar: GridToolbar,
+          }}
+          sx={{
+            backgroundColor: "white",
+            borderRadius: "20px",
+            opacity: 0.84,
+            justifyContent: "center",
+            alignContent: "center",
           }}
           pageSize={6}
           rowsPerPageOptions={[6]}
