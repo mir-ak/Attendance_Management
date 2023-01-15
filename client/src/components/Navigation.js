@@ -128,7 +128,7 @@ function Navigation() {
         </ul>
 
         <div className="signature">
-          <p>AMS® 2.6.0</p>
+          <p>AMS® 3.2.0</p>
         </div>
       </div>
     </div>
