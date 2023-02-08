@@ -17,14 +17,14 @@ import tempfile
 
 # connexion a la base de donnée (firebase) 
 def configData():
-  fb_app = firebase.FirebaseApplication('https://fasecam-44231-default-rtdb.europe-west1.firebasedatabase.app/', None)
+  fb_app = firebase.FirebaseApplication("https://attendancemanagement-7bf42-default-rtdb.europe-west1.firebasedatabase.app/", None)
   return fb_app   
 
 # connexion a la base de donnée Storage (firebase) 
 def configStorage():
     creds = credentials.Certificate('./keyFirebase/serviceAccountKey.json')
     firebase_admin.initialize_app(creds, {
-        'storageBucket': 'fasecam-44231.appspot.com'
+        'storageBucket': 'attendancemanagement-7bf42.appspot.com'
     })
     bucket = storage.bucket()
     return bucket   
@@ -88,7 +88,7 @@ def face_reco(frame, known_face_encodings, known_face_names, pose_predictor_68_p
             return np.empty((0))
         # vérifier la distance entre les visages connus et les visages détéctés 
         vectors = np.linalg.norm(known_face_encodings - face_encoding, axis=1)
-        tolerance = 0.54
+        tolerance = 0.48
         result = []
         for vector in vectors:
             if vector <= tolerance:
