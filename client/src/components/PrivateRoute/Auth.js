@@ -29,4 +29,5 @@ class AuthContext {
     return localStorage.getItem("authenticated");
   }
 }
+// eslint-disable-next-line
 export default new AuthContext();
