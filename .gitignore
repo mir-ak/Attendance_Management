@@ -3,3 +3,4 @@ client/build
 server/keyFirebase/serviceAccountKey.json
 server/image_data
 server/img
+client/.env
